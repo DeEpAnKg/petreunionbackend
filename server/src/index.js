@@ -17,8 +17,11 @@ const io = require('./modules/socket')(httpServer)
 app.use(express.static(path.join(__dirname, '..', 'public')))
 app.use(express.static(path.join(__dirname, '..', 'client', 'build')))
 app.use(cors({
-  origin: process.env.CLIENT
-}))
+  origin: process.env.CLIENT,
+  methods: ["POST","GET"],
+  credentials: true
+}
+));
 app.use(express.json())
 
 const limiter = new RateLimit({
